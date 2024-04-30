@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:file:~/h2Db/rds_orm_api;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    driver-class-name: org.h2.Driver
+  sql:
+    init:
+      mode: EMBEDDED
+      schema-locations:
+        - classpath:db/schema.sql
+      platform: h2
+
+
+
