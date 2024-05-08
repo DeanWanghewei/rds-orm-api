@@ -20,7 +20,7 @@ public class DataController {
     private DataServer dataServer;
 
     @ResponseBody
-    @PostMapping(value = "/data/{dbName}")
+    @PostMapping(value = "/data/{dbName}/insert")
     public void insertData(@PathVariable("dbName") String dbName, @RequestBody CreateDataModel data) {
         dataServer.insertData(dbName, data);
     }

@@ -1,4 +1,4 @@
-create table db_store
+create table if not exists db_store
 (
     name                   VARCHAR PRIMARY KEY,
     jdbc_url               VARCHAR,

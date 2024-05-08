@@ -9,10 +9,9 @@ spring:
     driver-class-name: org.h2.Driver
   sql:
     init:
-      mode: EMBEDDED
+      mode: always
       schema-locations:
         - classpath:db/schema.sql
       platform: h2
-
-
-
+  jpa:
+    show-sql: true

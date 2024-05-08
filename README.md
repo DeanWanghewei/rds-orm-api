@@ -5,3 +5,16 @@
 
 # 注意：
 目前项目没有做任何的防SQL注入处理，请谨慎使用
+
+# quick start
+## 部署
+### docker (推荐)
+### 手动编译部署
+```shell
+git clone https://github.com/DeanWanghewei/rds-orm-api.git
+cd rds-orm-api
+mvn clean package -Dmaven.test.skip=true
+java -jar target/rds-orm-api.jar
+```
+## 使用
+1. 注册数据库连接账号

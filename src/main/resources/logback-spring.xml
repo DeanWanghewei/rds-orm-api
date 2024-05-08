@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- configuration to be enabled when the "dev" profile is active -->
-    <property name="LOG_FOLDER" value="${user.dir}/logs/rds-orm-api"/>
+    <property name="LOG_FOLDER" value="~/logs/rds-orm-api"/>
     <property name="LOG_PATTERN"
               value="%d{ISO8601} %-5level %t %class{36} %L %M -%X{R_ID}-%X{U_ID}-%X{S_ID}- %msg%xEx%n"/>
 
