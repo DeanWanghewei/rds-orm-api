@@ -1,5 +1,8 @@
 package org.wei.rds.orm.api.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,10 @@ public class DbStoreController {
     @Resource
     private DbStoreRepository dbStoreRepository;
 
+    @Parameters(
+            @Parameter(name = "name", description = "数据库连接名称", required = true)
+    )
+    @Operation(summary = "更新数据库连接", description = "更新数据库连接")
     @PutMapping("/db/{name}")
     public ResponseEntity<DbStoreEntity> update(@PathVariable("name") String name, @RequestBody DbStoreEntity dbStoreEntity) {
         Optional<DbStoreEntity> tutorialData = dbStoreRepository.findById(name);
@@ -35,6 +42,7 @@ public class DbStoreController {
         }
     }
 
+    @Operation(summary = "插入数据库连接", description = "插入数据库连接")
     @PostMapping("/db")
     public ResponseEntity<DbStoreEntity> insert(@RequestBody DbStoreEntity dbStoreEntity) {
         try {
@@ -44,6 +52,7 @@ public class DbStoreController {
         }
     }
 
+    @Operation(summary = "获取所有数据库连接", description = "获取注册过的所有数据库信息")
     @GetMapping("/db/all")
     public ResponseEntity<Iterable<DbStoreEntity>> getAll() {
         return ResponseEntity.ok(dbStoreRepository.findAll());

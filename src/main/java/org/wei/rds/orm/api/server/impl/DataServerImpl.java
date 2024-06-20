@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.wei.rds.orm.api.db.ConnectionFactory;
 import org.wei.rds.orm.api.model.CreateDataModel;
 import org.wei.rds.orm.api.server.DataServer;
+import org.wei.rds.orm.api.view.ResView;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,7 +26,8 @@ public class DataServerImpl implements DataServer {
     private ConnectionFactory dbFactory;
 
     @Override
-    public void insertData(String dbName, CreateDataModel data) {
+    public ResView insertData(String dbName, CreateDataModel data) {
+        ResView resView = new ResView();
         try {
             Connection connection = dbFactory.getConnection(dbName);
             StringBuilder sql = new StringBuilder();
@@ -45,7 +47,9 @@ public class DataServerImpl implements DataServer {
             connection.close();
         } catch (ExecutionException | SQLException e) {
             logger.error(e.getMessage(), e);
+            resView.setSuccess(false);
+            resView.setMessage(e.getMessage());
         }
-
+        return resView;
     }
 }

@@ -1,6 +1,7 @@
 package org.wei.rds.orm.api.server;
 
 import org.wei.rds.orm.api.model.CreateDataModel;
+import org.wei.rds.orm.api.view.ResView;
 
 /**
  * @description:
@@ -9,5 +10,5 @@ import org.wei.rds.orm.api.model.CreateDataModel;
  */
 public interface DataServer {
 
-    void insertData(String dbName, CreateDataModel data);
+    ResView insertData(String dbName, CreateDataModel data);
 }
