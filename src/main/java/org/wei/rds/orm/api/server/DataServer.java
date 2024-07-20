@@ -1,6 +1,8 @@
 package org.wei.rds.orm.api.server;
 
 import org.wei.rds.orm.api.model.CreateDataModel;
+import org.wei.rds.orm.api.model.QueryDataModel;
+import org.wei.rds.orm.api.view.QueryDataView;
 import org.wei.rds.orm.api.view.ResView;
 
 /**
@@ -11,4 +13,6 @@ import org.wei.rds.orm.api.view.ResView;
 public interface DataServer {
 
     ResView insertData(String dbName, CreateDataModel data);
+
+    QueryDataView queryData(String dbName, QueryDataModel query);
 }

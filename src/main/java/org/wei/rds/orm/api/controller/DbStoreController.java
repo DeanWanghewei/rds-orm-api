@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.wei.rds.orm.api.entity.DbStoreEntity;
 import org.wei.rds.orm.api.repository.DbStoreRepository;
+import org.wei.rds.orm.api.server.DbStoreServer;
+import org.wei.rds.orm.api.view.ImportConfigResultView;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,6 +24,8 @@ import java.util.Optional;
 public class DbStoreController {
     @Resource
     private DbStoreRepository dbStoreRepository;
+    @Resource
+    private DbStoreServer dbStoreServer;
 
     @Parameters(
             @Parameter(name = "name", description = "数据库连接名称", required = true)
@@ -56,6 +61,18 @@ public class DbStoreController {
     @GetMapping("/db/all")
     public ResponseEntity<Iterable<DbStoreEntity>> getAll() {
         return ResponseEntity.ok(dbStoreRepository.findAll());
+    }
+
+    @Operation(summary = "导出配置", description = "导出所有的数据库配置信息")
+    @GetMapping("/db/exportConfig")
+    public ResponseEntity<Iterable<DbStoreEntity>> exportConfig() {
+        return ResponseEntity.ok(dbStoreRepository.findAll());
+    }
+
+    @Operation(summary = "导入配置", description = "导入所有的数据库配置")
+    @PostMapping("/db/importConfig")
+    public ResponseEntity<List<ImportConfigResultView>> importConfig(@RequestBody List<DbStoreEntity> storeEntities) {
+        return ResponseEntity.ok(dbStoreServer.importConfig(storeEntities));
     }
 
 
